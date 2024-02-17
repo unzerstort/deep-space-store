@@ -4,14 +4,69 @@
 
 <script>
 export default {
-    
+    data: () => ({
+        offer: {},
+    }),
+
+    methods: {
+        getOffer() {
+            fetch('https://api.deepspacestore.com/offers/offer_1396')
+                .then(response => response.json())
+                .then(data => this.offer = data)
+                .catch(error => console.error('Error fetching data: ', error));
+        }
+    },
+
+    mounted() {
+        this.getOffer();
+    }
+
 }
 </script>
 
 <template>
 
     <VCard>
-        <VCardTitle title="Oferta"></VCardTitle>
+        <VCardTitle>{{ offer.name }}</VCardTitle>
+        <VCardSubtitle>{{ offer.author }}</VCardSubtitle>
+        <VRow>
+            <VCol cols="2" align-self="center">
+                <VImg 
+                    :alt="offer.altText"
+                    :src="offer.image" 
+                    :lazy-src="offer.image" 
+                    aspect-ratio="1/1" 
+                    height="200" width="200"
+                ></VImg>
+            </VCol>
+                
+            <VCol cols="2">
+                <VCardText>
+        
+                    <p>
+                        {{offer.description}}
+                    </p>
+                    
+                    <p>
+                        <strong>Dimensões: </strong>{{offer.dimensions}}
+                    </p>
+        
+                    <p>
+                        <strong>Páginas: </strong>{{ offer.pages }}
+                    </p>
+        
+                    <p>
+                        <strong>Idioma: </strong>{{ offer.language }}
+                    </p>
+                    
+                    <p>
+                        <strong>Editora: </strong> {{ offer.publisher }}
+                    </p>
+                </VCardText>
+
+            </VCol>
+        </VRow>
+        <VCardActions></VCardActions>
     </VCard> 
 
 

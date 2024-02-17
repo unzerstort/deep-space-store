@@ -13,7 +13,7 @@ export const handlers = [
       'language': 'Português',
       'publisher': 'Companhia das Letras',
       'image': paleBlueDot,
-
+      'altText': 'capa do livro pálido ponto azul',
       'paymentOptions': [
         'creditCard',
         'bill',
