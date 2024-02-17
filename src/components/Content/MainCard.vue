@@ -11,7 +11,7 @@ export default {
 <template>
     <VMain>
         <VContainer>
-            <VCard variant="tonal" loading="...">
+            <VCard variant="tonal">
                 <slot></slot>
             </VCard>
         </VContainer>     

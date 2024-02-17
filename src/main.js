@@ -12,11 +12,23 @@ import * as directives from 'vuetify/directives';
 import '@mdi/font/css/materialdesignicons.css'
 import { md3 } from 'vuetify/blueprints'
 
-
 const vuetify = createVuetify({
     components,
     directives,
     md3,
 });
 
-createApp(App).use(router).use(vuetify).mount('#app');
+async function prepareApp() {
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+        const { worker } = await import('../mocks/browser.js');
+        await worker.start();
+    }
+}
+
+async function initializeApp() {
+    await prepareApp();
+
+    createApp(App).use(router).use(vuetify).mount('#app');
+}
+
+initializeApp();
