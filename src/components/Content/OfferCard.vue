@@ -1,6 +1,6 @@
 <script setup>
 import { VCard, VCardTitle, VCardSubtitle, VCardText, VCardActions, VRow, VCol, VImg} from 'vuetify/components';
-//import
+
 </script>
 
 <script>
@@ -38,15 +38,18 @@ export default {
                     :lazy-src="offer.image" 
                     aspect-ratio="1/1" 
                     height="200" width="200"
-                ></VImg>
+                >
+                    <template v-slot:error>
+                        <VImg
+                            height="200"
+                            max-width="200"
+                            aspect-ratio="1/1"
+                            src="../../assets/imgs/no-img-available.jpg"
+                        ></VImg>
+                    </template>
 
-                <template v-slot:error>
-                    <VImg
-                        height="200"
-                        max-width="200"
-                        src=""
-                    ></VImg>
-                </template>
+                </VImg>
+
             </VCol>
                 
             <VCol cols="2">

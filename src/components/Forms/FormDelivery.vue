@@ -1,5 +1,5 @@
 <script setup>
-import { VContainer, VForm, VTextField } from 'vuetify/lib/components/index.mjs';
+import { VContainer, VForm, VTextField } from 'vuetify/components';
 import { searchZipCode } from '@/components/Forms/ZipCodeValidation.js';
 
 </script>
@@ -46,13 +46,40 @@ export default {
                 hint="Somente números" 
                 persistent-hint
                 :error-messages="zipCodeError"
+                variant="outlined"
             ></VTextField>
-            <VTextField id="logradouro" :model-value="address.logradouro" v-if="address && address.logradouro" label="Logradouro"></VTextField>
-            <VTextField id="complemento" :model-value="address.complemento" v-if="address && address.complemento" label="Complemento"></VTextField>
-            <VTextField id="bairro" :model-value="address.bairro" v-if="address && address.bairro" label="Bairro"></VTextField>
-            <VTextField id="localidade" :model-value="address.localidade" v-if="address && address.localidade" label="Cidade"></VTextField>
-            <VTextField id="uf" :model-value="address.uf" v-if="address && address.uf" label="Estado"></VTextField>
-
+            <VTextField 
+                id="logradouro" 
+                :model-value="address.logradouro" 
+                v-if="address && address.logradouro" 
+                label="Logradouro"
+                variant="outlined"
+            ></VTextField>
+            <VTextField 
+                id="bairro" 
+                :model-value="address.bairro" 
+                v-if="address && address.bairro" 
+                label="Bairro"
+                variant="outlined"
+            ></VTextField>
+            <VTextField 
+                id="localidade" 
+                :model-value="address.localidade" 
+                v-if="address && address.localidade" 
+                label="Cidade"
+                variant="outlined"
+            ></VTextField>
+            <VTextField 
+                id="uf" 
+                :model-value="address.uf" 
+                v-if="address && address.uf" 
+                label="Estado" 
+                variant="outlined"></VTextField>
+            <VTextField 
+                id="complemento" 
+                label="Complemento" 
+                variant="outlined"
+            ></VTextField>
         </VForm>
     </VContainer>
 </template>

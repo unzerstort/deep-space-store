@@ -3,7 +3,7 @@ import { VApp, VMain, VStepper } from "vuetify/components";
 import NavBar from "@/components/Navigation/NavBar.vue";
 import MainCard from "@/components/Content/MainCard.vue";
 import OfferCard from "@/components/Content/OfferCard.vue";
-import FormPessoal from "@/components/Forms/FormPessoal.vue";
+import FormPersonal from "@/components/Forms/FormPersonal.vue";
 import FormDelivery from "@/components/Forms/FormDelivery.vue";
 import FormPayment from "@/components/Forms/FormPayment.vue";
 
@@ -23,7 +23,7 @@ import FormPayment from "@/components/Forms/FormPayment.vue";
 
                 <template v-slot:item.1>
                     <MainCard>
-                        <FormPessoal></FormPessoal>
+                        <FormPersonal></FormPersonal>
                     </MainCard>
                 </template>
 
