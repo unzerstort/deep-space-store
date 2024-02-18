@@ -21,9 +21,9 @@ export default {
 <template>
     <VContainer>
         <VForm>
-            <VTextField v-model="name" label="Nome completo"></VTextField>
-            <VTextField v-model="email" label="E-mail"></VTextField>
-            <VTextField v-model="phone" label="Telefone" required></VTextField>
+            <VTextField label="Nome completo"></VTextField>
+            <VTextField label="E-mail" placeholder="johndoe@gmail.com" type="email"></VTextField>
+            <VTextField label="Telefone" required></VTextField>
         </VForm>
     </VContainer>
 </template>

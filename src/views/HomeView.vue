@@ -12,9 +12,7 @@ import FormPagamento from "@/components/Forms/FormPagamento.vue";
     <VApp>
         <NavBar />
         <VMain>
-            <OfferCard>
-
-            </OfferCard>
+            <OfferCard></OfferCard>
 
             <VStepper 
                 alt-labels 

@@ -1,29 +1,21 @@
 <script setup>
 import { ref } from 'vue'
+import AccMenu from './AccMenu.vue';
 
-const drawer = ref(null)
 
 </script>
         
 <script>
 export default {
-    data: () => ({ drawer: null }),
+    data: () => ({ }),
 }
 </script>
 
 <template>
-    <VNavigationDrawer v-model="drawer" location="right">
-        <VListItem title="Minha conta" subtitle="Fulana da Silva">
-            <VAvatar color="surface-variant"></VAvatar>
-        </VListItem>
-        <VDivider></VDivider>
-        <VListItem></VListItem>
-    </VNavigationDrawer>
-
     <VAppBar>
         <VAppBarTitle text="Deep Space Store"></VAppBarTitle>
 
-        <VResponsive max-width="200">
+        <VResponsive max-width="300">
             <VTextField
                 density="compact"
                 flat
@@ -35,7 +27,7 @@ export default {
             ></VTextField>
         </VResponsive>
 
-        <VAppBarNavIcon @click="drawer = !drawer"></VAppBarNavIcon>
+        <AccMenu />
 
     </VAppBar>
 </template>

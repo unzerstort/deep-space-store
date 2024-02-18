@@ -1,5 +1,6 @@
 <script setup>
-import { VForm, VInput } from 'vuetify/lib/components/index.mjs';
+import { VForm } from 'vuetify/lib/components/index.mjs';
+import { searchZipCode } from '@/components/Forms/index.js';
 
 </script>
 
@@ -8,8 +9,28 @@ import { VForm, VInput } from 'vuetify/lib/components/index.mjs';
 export default {
 
     data: () => ({
-        zipCode: '',
-    })
+        address: {},
+        zipCodeError: '',
+    }),
+
+    methods: {
+        getAddress(zipCode) {
+            let value = zipCode.target.value;
+
+            if (searchZipCode(value)) {
+                fetch(`https://viacep.com.br/ws/${value}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.address = data;
+                        this.zipCodeError = ''
+                    })
+                    .catch(error => console.error('Error fetching data: ', error));
+            } else {
+                this.zipCodeError = 'CEP inválido';
+                this.address = {};
+            }
+        }
+    }
 
 }
 
@@ -18,10 +39,22 @@ export default {
 <template>
     <VContainer>
         <VForm>
-            <VTextField v-model="zipCode" label="CEP" type="number"></VTextField>
+            <VTextField 
+                v-on:blur="getAddress" 
+                label="CEP" 
+                placeholder="Insira um CEP" 
+                hint="Somente números" 
+                persistent-hint
+                :error-messages="zipCodeError"
+            ></VTextField>
+            <VTextField id="logradouro" :model-value="address.logradouro" v-if="address && address.logradouro" label="Logradouro"></VTextField>
+            <VTextField id="complemento" :model-value="address.complemento" v-if="address && address.complemento" label="Complemento"></VTextField>
+            <VTextField id="bairro" :model-value="address.bairro" v-if="address && address.bairro" label="Bairro"></VTextField>
+            <VTextField id="localidade" :model-value="address.localidade" v-if="address && address.localidade" label="Cidade"></VTextField>
+            <VTextField id="uf" :model-value="address.uf" v-if="address && address.uf" label="Estado"></VTextField>
+
         </VForm>
     </VContainer>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
