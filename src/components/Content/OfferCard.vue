@@ -1,5 +1,6 @@
 <script setup>
 import { VCard, VCardTitle, VCardSubtitle, VCardText, VCardActions, VRow, VCol, VImg} from 'vuetify/components';
+//import
 </script>
 
 <script>
@@ -38,6 +39,14 @@ export default {
                     aspect-ratio="1/1" 
                     height="200" width="200"
                 ></VImg>
+
+                <template v-slot:error>
+                    <VImg
+                        height="200"
+                        max-width="200"
+                        src=""
+                    ></VImg>
+                </template>
             </VCol>
                 
             <VCol cols="2">

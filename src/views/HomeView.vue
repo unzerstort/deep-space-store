@@ -4,7 +4,7 @@ import NavBar from "@/components/Navigation/NavBar.vue";
 import MainCard from "@/components/Content/MainCard.vue";
 import OfferCard from "@/components/Content/OfferCard.vue";
 import FormPessoal from "@/components/Forms/FormPessoal.vue";
-import FormEntrega from "@/components/Forms/FormEntrega.vue";
+import FormDelivery from "@/components/Forms/FormDelivery.vue";
 import FormPayment from "@/components/Forms/FormPayment.vue";
 
 </script>
@@ -29,7 +29,7 @@ import FormPayment from "@/components/Forms/FormPayment.vue";
 
                 <template v-slot:item.2>
                     <MainCard>
-                        <FormEntrega></FormEntrega>
+                        <FormDelivery></FormDelivery>
                     </MainCard>
                 </template>
 
