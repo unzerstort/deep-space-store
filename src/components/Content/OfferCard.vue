@@ -1,5 +1,5 @@
 <script setup>
-
+import { VCard, VCardTitle, VCardSubtitle, VCardText, VCardActions, VRow, VCol, VImg} from 'vuetify/components';
 </script>
 
 <script>

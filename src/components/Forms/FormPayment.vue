@@ -1,5 +1,5 @@
 <script setup>
-import { VForm, VInput } from 'vuetify/lib/components/index.mjs';
+import { VContainer, VForm, VRadioGroup, VRadio, VTextField } from 'vuetify/components';
 
 </script>
 

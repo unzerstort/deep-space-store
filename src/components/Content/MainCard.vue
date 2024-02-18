@@ -1,5 +1,5 @@
 <script setup>
-
+import { VMain, VContainer, VCard } from 'vuetify/components';
 </script>
 
 <script>

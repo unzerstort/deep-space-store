@@ -1,6 +1,5 @@
 <script setup>
-import { VForm, VInput } from 'vuetify/lib/components/index.mjs';
-import MainCard from '../Content/MainCard.vue';
+import { VContainer, VForm, VTextField } from 'vuetify/components';
 
 </script>
 

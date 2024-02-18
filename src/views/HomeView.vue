@@ -1,10 +1,11 @@
 <script setup>
+import { VApp, VMain, VStepper } from "vuetify/components";
 import NavBar from "@/components/Navigation/NavBar.vue";
 import MainCard from "@/components/Content/MainCard.vue";
 import OfferCard from "@/components/Content/OfferCard.vue";
 import FormPessoal from "@/components/Forms/FormPessoal.vue";
 import FormEntrega from "@/components/Forms/FormEntrega.vue";
-import FormPagamento from "@/components/Forms/FormPagamento.vue";
+import FormPayment from "@/components/Forms/FormPayment.vue";
 
 </script>
 
@@ -34,7 +35,7 @@ import FormPagamento from "@/components/Forms/FormPagamento.vue";
 
                 <template v-slot:item.3>
                     <MainCard>
-                        <FormPagamento></FormPagamento>
+                        <FormPayment></FormPayment>
                     </MainCard>
                 </template>
             </VStepper>

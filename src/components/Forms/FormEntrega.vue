@@ -1,6 +1,6 @@
 <script setup>
-import { VForm } from 'vuetify/lib/components/index.mjs';
-import { searchZipCode } from '@/components/Forms/index.js';
+import { VContainer, VForm, VTextField } from 'vuetify/lib/components/index.mjs';
+import { searchZipCode } from '@/components/Forms/ZipCodeValidation.js';
 
 </script>
 
