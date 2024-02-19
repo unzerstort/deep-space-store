@@ -20,6 +20,7 @@ export default {
 
     mounted() {
         this.getOffer();
+        console.log(this.$route.query.test);
     }
 
 }
