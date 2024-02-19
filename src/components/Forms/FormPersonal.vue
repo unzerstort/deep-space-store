@@ -1,43 +1,59 @@
 <script setup>
+import { ref } from 'vue';
 import { VContainer, VForm, VTextField } from 'vuetify/components';
 
-</script>
+const props = defineProps({
+    valid: Boolean
+});
 
-<script>
+const emit = defineEmits(['update:modelValue']);
 
-export default {
+const form = ref(false); 
 
-    data: () => ({
-        name: '',
-        email: '',
-        phone: '',
-    })
+const fullName = ref('');
+const email = ref('');
+const phone = ref('');
 
-}
+const rules = {
+    required: v => !!v || 'Campo é obrigatório',
+    fullName: v => (v && v.length <= 30) || 'Nome deve ter no máximo 30 caracteres',
+    email: v => /.+@.+\..+/.test(v) || 'E-mail deve ser válido',
+    phone: v => /^\(?\d{2}\)? ?\d{4,5}-?\d{4}$/.test(v) || 'Telefone com DDD inválido',
+};
 
+const checkFormValidity = () => {
+    let formValid = !(!form.value);
+    emit('update:modelValue', formValid);
+};
 </script>
 
 <template>
     <VContainer>
-        <VForm>
+        <VForm v-model="form" @submit.prevent="checkFormValidity">
             <VTextField 
                 label="Nome completo"
                 variant="outlined"
+                v-model="fullName"
+                :rules="[rules.required, rules.fullName]"
+                @input="checkFormValidity"
             ></VTextField>
             <VTextField 
                 label="E-mail" 
                 placeholder="johndoe@gmail.com" 
                 type="email"
                 variant="outlined"
+                v-model="email"
+                :rules="[rules.email]"
+                @input="checkFormValidity"
             ></VTextField>
             <VTextField 
                 label="Telefone" 
                 required
                 variant="outlined"
+                v-model="phone"
+                :rules="[rules.required, rules.phone]"
+                @input="checkFormValidity"
             ></VTextField>
         </VForm>
     </VContainer>
 </template>
-
-<style scoped>
-</style>

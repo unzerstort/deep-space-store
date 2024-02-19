@@ -5,16 +5,22 @@ import FormPersonal from "@/components/Forms/FormPersonal.vue";
 import FormDelivery from "@/components/Forms/FormDelivery.vue";
 import FormPayment from "@/components/Forms/FormPayment.vue";
 import OfferDetail from './OfferDetail.vue';
-</script>
 
-<script>
-export default {
-    props: {
-        offer: {
-            type: Object,
-        },
-    }
-}
+import { ref } from 'vue';
+
+const modelValue = ref('')
+
+const props = defineProps({
+    offer: Object,
+});
+
+const steps = ref([
+    {name: 'Dados Pessoais', valid: true},
+    {name: 'Dados Entrega', valid: true},
+    {name: 'Dados Pagamento', valid: true}
+])
+
+
 </script>
 
 <template>
@@ -22,17 +28,16 @@ export default {
         <VCol cols="3">
             <OfferDetail :offer="offer"></OfferDetail>
         </VCol>
-
+        
         <VCol cols="9">
             <VStepper 
                 alt-labels 
                 editable
                 :items="['Dados pessoais', 'Dados de entrega', 'Forma de pagamento']"
             >
-        
                 <template v-slot:item.1>
                     <MainCard>
-                        <FormPersonal></FormPersonal>
+                        <FormPersonal v-model="steps[0].valid"></FormPersonal>
                     </MainCard>
                 </template>
         
