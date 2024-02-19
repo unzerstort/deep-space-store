@@ -11,7 +11,7 @@ export default {
 
     methods: {
         getOffer() {
-            fetch('https://api.deepspacestore.com/offers/offer_1396')
+            fetch(`https://api.deepspacestore.com/offers/${this.$route.params.id}`)
                 .then(response => response.json())
                 .then(data => this.offer = data)
                 .catch(error => console.error('Error fetching data: ', error));
@@ -20,7 +20,6 @@ export default {
 
     mounted() {
         this.getOffer();
-        console.log(this.$route.query.test);
     }
 
 }
