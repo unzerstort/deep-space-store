@@ -6,16 +6,36 @@ import OfferCard from "@/components/Content/OfferCard.vue";
 import FormPersonal from "@/components/Forms/FormPersonal.vue";
 import FormDelivery from "@/components/Forms/FormDelivery.vue";
 import FormPayment from "@/components/Forms/FormPayment.vue";
+</script>
 
+<script>
+export default {
+    data: () => ({
+        offer: {},
+    }),
+
+    methods: {
+        getOffer() {
+            fetch(`https://api.deepspacestore.com/offers/${this.$route.params.id}`)
+                .then(response => response.json())
+                .then(data => this.offer = data)
+                .catch(error => console.error('Error fetching data: ', error));
+        }
+    },
+
+    mounted() {
+        this.getOffer();
+    }
+}
 </script>
 
 <template>
     <VApp>
         <NavBar />
         <VMain>
-            <OfferCard></OfferCard>
+            <OfferCard :offer="offer"></OfferCard>
 
-            <VStepper 
+            <!-- <VStepper 
                 alt-labels 
                 editable
                 :items="['Dados pessoais', 'Dados de entrega', 'Forma de pagamento']"
@@ -38,7 +58,7 @@ import FormPayment from "@/components/Forms/FormPayment.vue";
                         <FormPayment></FormPayment>
                     </MainCard>
                 </template>
-            </VStepper>
+            </VStepper> -->
         </VMain>
     </VApp>
 </template>
