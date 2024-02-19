@@ -3,10 +3,21 @@ import { VContainer, VForm, VRadioGroup, VRadio, VTextField } from 'vuetify/comp
 import BillPayment from '@/components/Payment/BillPayment.vue';
 import CardPayment from '@/components/Payment/CardPayment.vue';
 import PixPayment from '@/components/Payment/PixPayment.vue';
-import { ref } from 'vue';
 
-const selectedPayment = ref('');
+</script>
 
+<script>
+export default {
+    data: () => ({
+        selectedPayment: '',
+    }),
+
+    props: {
+        paymentOptions: {
+            type: Array, // TODO:: handle payment options
+        },
+    }
+}
 </script>
 
 <template>
@@ -17,16 +28,19 @@ const selectedPayment = ref('');
                     label="Boleto" 
                     id="bill" 
                     value="bill"
+                    v-if="paymentOptions.includes('bill')"
                 ></VRadio>
                 <VRadio 
                     label="Cartão de crédito" 
                     id="card" 
                     value="card"
+                    v-if="paymentOptions.includes('card')"
                 ></VRadio>
                 <VRadio 
                     label="Pix" 
                     id="pix" 
                     value="pix"
+                    v-if="paymentOptions.includes('pix')"
                 ></VRadio>
             </VRadioGroup>
             

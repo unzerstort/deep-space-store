@@ -6,7 +6,6 @@ import { VImg } from 'vuetify/components';
 <template>
     <VImg
         src="../src/assets/imgs/qr-code.jpg"
-        aspect-ratio="1/1"
         height="400" width="400"
     >
     </VImg>

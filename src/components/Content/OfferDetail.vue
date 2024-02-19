@@ -29,8 +29,7 @@ export default {
                         <VImg
                             height="200"
                             max-width="200"
-                            aspect-ratio="1/1"
-                            src="../../assets/imgs/no-img-available.jpg"
+                                                src="../../assets/imgs/no-img-available.jpg"
                         ></VImg>
                     </template>
 

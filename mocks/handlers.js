@@ -15,10 +15,9 @@ export const handlers = [
       'image': paleBlueDot,
       'altText': 'capa do livro pálido ponto azul',
       'paymentOptions': [
-        'creditCard',
+        'card',
         'bill',
         'pix',
-        'googlePay'
       ],
     })
   }),
