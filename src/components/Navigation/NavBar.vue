@@ -24,6 +24,7 @@ export default {
                 rounded="lg"
                 single-line
                 variant="solo-filled"
+                prepend-inner-icon="mdi-magnify"
             ></VTextField>
         </VResponsive>
 
