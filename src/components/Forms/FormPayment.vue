@@ -3,27 +3,42 @@ import { VContainer, VForm, VRadioGroup, VRadio, VTextField, VBtn } from 'vuetif
 import BillPayment from '@/components/Payment/BillPayment.vue';
 import CardPayment from '@/components/Payment/CardPayment.vue';
 import PixPayment from '@/components/Payment/PixPayment.vue';
-
-let selectedPayment = ''
-
-const cpfRegex = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
+import { ref } from 'vue';
 
 const props = defineProps({
+    valid: Boolean,
     paymentOptions: {
         type: Array,
     },
 });
+
+const emit = defineEmits(['update:modelValue']);
+
+const form = ref(false);
+
+const selectedPayment = ref('');
+
+const cpfRegex = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
 
 const rules = {
     required:v => !!v || 'Campo é obrigatório',
     cpf: v => cpfRegex.test(v) && (v.length > 0 && !(v.split('').every(c => {return c === v[0]}))) && v.length === 11 || 'CPF inválido',
 };
 
+const checkFormValidity = () => {
+    console.log('waaaaaaaaaa')
+    if (!form.value) {
+        emit('update:modelValue', false);
+    } else {
+        emit('update:modelValue', true);
+    }
+    };
+
 </script>
 
 <template>
     <VContainer>
-        <VForm>
+        <VForm v-model="form" @submit.prevent="checkFormValidity">
             <VRadioGroup label="Selecione o meio de pagamento:" v-model="selectedPayment">
                 <VRadio 
                     label="Boleto" 
@@ -55,6 +70,7 @@ const rules = {
                 type="number" 
                 variant="outlined"
                 :rules="[rules.required, rules.cpf]"
+                @blur="checkFormValidity"
             ></VTextField>
 
         </VForm>

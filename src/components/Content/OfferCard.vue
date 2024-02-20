@@ -80,7 +80,7 @@ const prevStep = () => {
                 </VStepperWindow>
         
                 <VStepperWindow step="2" v-show="currStep === 2">
-                    <FormPayment :paymentOptions="['bill', 'card', 'pix']"/>
+                    <FormPayment :paymentOptions="['bill', 'card', 'pix']" v-model="steps[2].valid"/>
                     <VRow justify="space-between" class="spacing">
                         <VBtn @click="prevStep">Voltar</VBtn>
                         <VBtn @click="nextStep" :disabled="!steps[2].valid">Finalizar Compra</VBtn>
