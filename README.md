@@ -1,57 +1,17 @@
 # deep-space-store
 
-This template should help get you started developing with Vue 3 in Vite.
+Teste técnico para a vaga de desenvolvedor front-end na YOUSHOP, que consiste em desenvolver uma página de checkout de uma loja fictícia chamada Deep Space Store.
 
-## Recommended IDE Setup
+## Executando
+Foram utilizadas as versões >= v16.2.0 do NodeJS e  >= v7.13.0 do npm para o desenvolvimento da aplicação.  
+Para executar a aplicação, utilize o seguinte comando:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
 ```
+A execução da aplicação em modo desenvolvimento é necessária devido à utilização da biblioteca [MSW](https://mswjs.io/).
+Além da MSW foram utilizados o VueJS na versão 3, o vue-router e o Vuetify.
 
-### Compile and Minify for Production
+Durante o desenvolvimento, notou-se que a utilização do [Vuex](https://vuex.vuejs.org/) (ou o [Pinia](https://pinia.vuejs.org/)) 
+teria sido uma abordagem mais interessante, por centralizar o controle de estados.
 
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
