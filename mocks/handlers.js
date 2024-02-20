@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 import paleBlueDot from '@/assets/imgs/palido-ponto-azul.jpg';
 
 export const handlers = [
-  http.get(/https:\/\/api\.deepspacestore\.com\/offers\/(.+)/, () => {
+  http.get('https:\/\/api\.deepspacestore\.com\/offers\/(.+)\/', () => {
     return HttpResponse.json({
       'name': 'Pálido Ponto Azul',
       'value': 49.90,
@@ -20,5 +20,19 @@ export const handlers = [
         'pix',
       ],
     })
+  }),
+
+  http.post('https:\/\/api\.deepspacestore\.com\/offers\/(.+)\/create_order', (req, res, ctx) => {
+  const { offerCode } = req.params;
+
+  const { clientData, paymentData } = req.body;
+
+  console.log(clientData,paymentData)
+
+
+  return res(
+    ctx.status(200),
+    ctx.json({ message: `Ordem criada para a oferta ${offerCode} com sucesso!` })
+  );
   }),
 ]

@@ -1,44 +1,54 @@
 <script setup>
+import { ref, reactive, onMounted } from 'vue';
 import { VContainer, VForm, VTextField } from 'vuetify/components';
 import { searchZipCode } from '@/components/Forms/ZipCodeValidation.js';
 
-</script>
+const props = defineProps({
+    valid: Boolean
+});
 
-<script>
+const emit = defineEmits(['update:modelValue']);
 
-export default {
+const form = ref(false);
 
-    data: () => ({
-        address: {},
-        zipCodeError: '',
-    }),
+const address = reactive({});
+const zipCodeError = ref('');
 
-    methods: {
-        getAddress(zipCode) {
-            let value = zipCode.target.value;
+const checkFormValidity = () => {
+    if (!form.value) {
+        emit('update:modelValue', false);
+    } else {
+        emit('update:modelValue', true);
+    }
+};
 
-            if (searchZipCode(value)) {
-                fetch(`https://viacep.com.br/ws/${value}/json/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        this.address = data;
-                        this.zipCodeError = ''
-                    })
-                    .catch(error => console.error('Error fetching data: ', error));
-            } else {
-                this.zipCodeError = 'CEP inválido';
-                this.address = {};
-            }
+const getAddress = async (zipCode) => {
+    let value = zipCode.target.value;
+
+    if (searchZipCode(value)) {
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${value}/json/`);
+            const data = await response.json();
+            Object.assign(address, data); // Assign fetched data to the address reactive object
+            zipCodeError.value = '';
+            
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+            zipCodeError.value = 'Erro ao buscar CEP';
+            Object.keys(address).forEach(key => delete address[key]);
         }
+    } else {
+        zipCodeError.value = 'CEP inválido';
+        Object.keys(address).forEach(key => delete address[key]);
     }
 
-}
-
+    checkFormValidity();
+};
 </script>
 
 <template>
     <VContainer>
-        <VForm>
+        <VForm v-model="form" @submit.prevent="checkFormValidity">
             <VTextField 
                 v-on:blur="getAddress" 
                 label="CEP" 

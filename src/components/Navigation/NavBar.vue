@@ -1,18 +1,12 @@
 <script setup>
-import { VAppBar, VAppBarTitle, VResponsive, VTextField } from 'vuetify/components';
+import { VAppBar, VIcon, VAppBarTitle, VResponsive, VTextField } from 'vuetify/components';
 import AccMenu from './AccMenu.vue';
 
-
-</script>
-        
-<script>
-export default {
-    data: () => ({ }),
-}
 </script>
 
 <template>
     <VAppBar>
+        <VIcon icon="mdi-rocket" end></VIcon>
         <VAppBarTitle text="Deep Space Store"></VAppBarTitle>
 
         <VResponsive max-width="300">

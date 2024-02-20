@@ -3,12 +3,12 @@ import { ref } from 'vue';
 import { VContainer, VForm, VTextField } from 'vuetify/components';
 
 const props = defineProps({
-    valid: Boolean
+  valid: Boolean
 });
 
 const emit = defineEmits(['update:modelValue']);
 
-const form = ref(false); 
+const form = ref(false);
 
 const fullName = ref('');
 const email = ref('');
@@ -22,8 +22,12 @@ const rules = {
 };
 
 const checkFormValidity = () => {
-    let formValid = !(!form.value);
-    emit('update:modelValue', formValid);
+  console.log('awa')
+  if (!form.value) {
+    emit('update:modelValue', false);
+  } else {
+    emit('update:modelValue', true);
+  }
 };
 </script>
 
@@ -35,7 +39,7 @@ const checkFormValidity = () => {
                 variant="outlined"
                 v-model="fullName"
                 :rules="[rules.required, rules.fullName]"
-                @input="checkFormValidity"
+                @blur="checkFormValidity"
             ></VTextField>
             <VTextField 
                 label="E-mail" 
@@ -44,7 +48,7 @@ const checkFormValidity = () => {
                 variant="outlined"
                 v-model="email"
                 :rules="[rules.email]"
-                @input="checkFormValidity"
+                @blur="checkFormValidity"
             ></VTextField>
             <VTextField 
                 label="Telefone" 
@@ -52,7 +56,7 @@ const checkFormValidity = () => {
                 variant="outlined"
                 v-model="phone"
                 :rules="[rules.required, rules.phone]"
-                @input="checkFormValidity"
+                @blur="checkFormValidity"
             ></VTextField>
         </VForm>
     </VContainer>

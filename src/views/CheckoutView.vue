@@ -1,5 +1,5 @@
 <script setup>
-import { VApp, VMain, VStepper } from "vuetify/components";
+import { VApp, VMain } from "vuetify/components";
 import NavBar from "@/components/Navigation/NavBar.vue";
 import OfferCard from "@/components/Content/OfferCard.vue";
 
@@ -13,7 +13,7 @@ export default {
 
     methods: {
         getOffer() {
-            fetch(`https://api.deepspacestore.com/offers/${this.$route.params.id}`)
+            fetch(`https://api.deepspacestore.com/offers/${this.$route.params.id}/`)
                 .then(response => response.json())
                 .then(data => this.offer = data)
                 .catch(error => console.error('Error fetching data: ', error));

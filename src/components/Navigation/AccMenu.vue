@@ -12,7 +12,7 @@ export default {
             { title: 'Seus pedidos' },
             { title: 'Lista de desejos' },
             { title: 'Configurações' },
-            { title: 'Sair da conta' },
+            { title: 'Sair' },
         ],
     })
 
@@ -27,8 +27,9 @@ export default {
             <VBtn
                 color="primary"
                 v-bind="props"
+                prepend-icon="mdi-account"
             >
-                Sua Conta
+                Conta
             </VBtn>
         </template>
 
