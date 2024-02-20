@@ -22,17 +22,10 @@ export const handlers = [
     })
   }),
 
-  http.post('https:\/\/api\.deepspacestore\.com\/offers\/(.+)\/create_order', (req, res, ctx) => {
-  const { offerCode } = req.params;
-
-  const { clientData, paymentData } = req.body;
-
-  console.log(clientData,paymentData)
-
-
-  return res(
-    ctx.status(200),
-    ctx.json({ message: `Ordem criada para a oferta ${offerCode} com sucesso!` })
+  http.post('https:\/\/api\.deepspacestore\.com\/offers\/(.+)\/create_order', () => {
+    return HttpResponse.json({
+      'message': `Ordem criada para a oferta com sucesso!`
+    }
   );
   }),
 ]

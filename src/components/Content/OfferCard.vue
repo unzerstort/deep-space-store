@@ -1,10 +1,15 @@
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { VStepper, VStepperHeader, VStepperItem, VStepperWindow, VDivider, VBtn, VRow, VCol } from 'vuetify/components';
 import FormPersonal from '../Forms/FormPersonal.vue';
 import FormDelivery from '../Forms/FormDelivery.vue';
 import FormPayment from '../Forms/FormPayment.vue';
 import OfferDetail from '../Content/OfferDetail.vue';
+import SuccessView from '@/views/SuccessView.vue';
+
+const router = useRouter();
+const params = router.currentRoute.value.params;
 
 const props = defineProps({
     offer: Object,
@@ -29,6 +34,10 @@ const prevStep = () => {
     if (currStep.value > 0) currStep.value--;
 };
 
+const finishOrder = () => {
+    fetch(`https://api.deepspacestore.com/offers/${params.id}/create_order`, {method: 'POST',  body: ''})
+        .then(_ => router.push({name: 'paymentSuccessful'}) );
+}
 
 </script>
 
@@ -83,7 +92,7 @@ const prevStep = () => {
                     <FormPayment :paymentOptions="['bill', 'card', 'pix']" v-model="steps[2].valid"/>
                     <VRow justify="space-between" class="spacing">
                         <VBtn @click="prevStep">Voltar</VBtn>
-                        <VBtn @click="nextStep" :disabled="!steps[2].valid">Finalizar Compra</VBtn>
+                        <VBtn @click="finishOrder" :disabled="!steps[2].valid">Finalizar Compra</VBtn>
                     </VRow>
                 </VStepperWindow>
             </VStepper>

@@ -26,7 +26,6 @@ const rules = {
 };
 
 const checkFormValidity = () => {
-    console.log('waaaaaaaaaa')
     if (!form.value) {
         emit('update:modelValue', false);
     } else {

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CheckoutView from "../views/CheckoutView.vue";
+import CheckoutView from "@/views/CheckoutView.vue";
 import NotFoundView from "@/views/NotFoundView.vue"
+import SuccessView from "@/views/SuccessView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: "/:catchAll(.*)",
       name: "notFound",
       component: NotFoundView,
+    },
+    {
+      path: "/payment_successful",
+      name: "paymentSuccessful",
+      component: SuccessView,
     },
   ],
 });
